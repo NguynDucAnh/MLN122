@@ -1,0 +1,8 @@
+{
+  "name": "Sinh Vật Không Bao Giờ Chết",
+  "description": "Trang web thuyết trình tương tác 25 phút về Chương 4 Kinh tế Chính trị Mác-Lênin: Cạnh tranh & Độc quyền trong kỷ nguyên mới",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

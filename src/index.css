@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-display: "Playfair Display", serif;
+  
+  --color-biotech-dark: #040714;
+  --color-biotech-gray: #0d122b;
+  --color-gold-accent: #d4af37;
+  --color-red-coral: #ff5e3a;
+  --color-cyan-glow: #7fd8ff;
+}
+
+body {
+  @apply bg-[#040714] text-slate-100 antialiased overflow-x-hidden selection:bg-amber-500/30 selection:text-white;
+}
+
+/* Custom scrollbar for biotech theme */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #040714; 
+}
+::-webkit-scrollbar-thumb {
+  background: #1b264f; 
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d4af37; 
+}
+
+/* ============================
+   GLOWING PULSE ANIMATIONS
+   ============================ */
+@keyframes bioPulse {
+  0%, 100% {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 0.15;
+    filter: blur(80px);
+  }
+  50% {
+    transform: scale(1.15) translate(-45%, -55%);
+    opacity: 0.3;
+    filter: blur(100px);
+  }
+}
+
+.bio-pulse-glow-1 {
+  animation: bioPulse 12s infinite ease-in-out;
+}
+
+.bio-pulse-glow-2 {
+  animation: bioPulse 16s infinite ease-in-out reverse;
+}
+
+/* ============================
+   SHIMMER EFFECT for cards
+   ============================ */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #d4af37 0%,
+    #fff8dc 40%,
+    #d4af37 60%,
+    #b8952b 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ============================
+   SCANNER LINE for tech feel
+   ============================ */
+@keyframes scanLine {
+  0% { top: 0%; opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.scan-line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(127, 216, 255, 0.5), transparent);
+  animation: scanLine 4s linear infinite;
+}
+
+/* ============================
+   TYPING CURSOR  
+   ============================ */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+  color: #d4af37;
+}
+
+/* ============================
+   FLOAT ANIMATION
+   ============================ */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+.float-anim {
+  animation: float 5s ease-in-out infinite;
+}
+
+/* ============================
+   GLOW PULSE for highlight cards
+   ============================ */
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.1); }
+  50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.25), 0 0 50px rgba(212, 175, 55, 0.1); }
+}
+
+.glow-gold {
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* ============================
+   SMOOTH SCROLL
+   ============================ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================
+   INPUT RANGE STYLING (slider)
+   ============================ */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #d4af37;
+  cursor: pointer;
+  border: 2px solid #040714;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+  transition: box-shadow 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.8);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #d4af37;
+  cursor: pointer;
+  border: 2px solid #040714;
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+}
+
+/* ============================
+   CARD HOVER LIFT
+   ============================ */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
