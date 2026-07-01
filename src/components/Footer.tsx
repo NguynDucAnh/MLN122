@@ -4,7 +4,7 @@ import { Sparkles } from 'lucide-react';
 export function Footer() {
   return (
     <footer className="relative py-24 px-4 bg-transparent overflow-hidden flex flex-col items-center justify-center border-t border-[#B45309]/20 backdrop-blur-sm">
-      
+
       {/* Background soft glow base */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-30 bg-[radial-gradient(ellipse_at_center,rgba(254,252,232,0.8)_0%,transparent_100%)]" />
 
@@ -12,7 +12,7 @@ export function Footer() {
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#B45309]/50 to-transparent" />
 
       <div className="max-w-4xl mx-auto relative z-10 text-center">
-        
+
         {/* Animated Icon */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
@@ -57,9 +57,6 @@ export function Footer() {
         >
           <span className="text-[11px] font-mono tracking-widest text-[#B45309] uppercase font-bold">
             Bài thuyết trình môn Triết học Mác - Lênin
-          </span>
-          <span className="text-[10px] font-mono tracking-[0.2em] text-slate-500 uppercase">
-            Designed for Impact & Clarity
           </span>
         </motion.div>
 

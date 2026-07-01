@@ -140,7 +140,7 @@ function IsometricBuilding({ activeId, setActiveId, rotationY }: { activeId: num
 }
 
 export function StateMonopolySection() {
-  const [selectedTierId, setSelectedTierId] = useState(2); // Start on main floor
+  const [selectedTierId, setSelectedTierId] = useState(1); // Start on top floor
   const [rotationY, setRotationY] = useState(-Math.PI / 4);
 
   const activeTier = structureTiers.find(t => t.id === selectedTierId) || structureTiers[1];

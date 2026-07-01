@@ -105,27 +105,27 @@ function BalanceScale3D({ tiltValue }: { tiltValue: number }) {
 export function HistoricalRoleSection() {
   const [sliderVal, setSliderVal] = useState(50);
 
-  // Derive states
+  // Derive states: Left (<= 45) is Pros, Right (>= 55) is Cons
   const isProsActive = sliderVal <= 45;
   const isConsActive = sliderVal >= 55;
   const isBalanced = !isProsActive && !isConsActive;
 
   const pros = [
     {
-      title: 'Bệ phóng Cách mạng KH-CN',
-      desc: 'Chuyển biến lao động thủ công thô sơ lên cơ khí hóa, tự động hóa, thúc đẩy cuộc cách mạng công nghiệp 4.0, tạo bệ phóng R&D khổng lồ.',
+      title: 'Thúc đẩy lực lượng sản xuất phát triển nhanh chóng',
+      desc: 'Chủ nghĩa tư bản đã chuyển đổi kỹ thuật lao động thủ công thô sơ lên cơ khí hóa, tự động hóa và tin học hóa. Đây là bệ phóng cho các cuộc cách mạng công nghiệp, đưa nhân loại bước vào thời đại kinh tế tri thức.',
       icon: <Cpu size={18} />,
       threshold: 40
     },
     {
-      title: 'Xã hội hóa sản xuất quy mô lớn',
-      desc: 'Chuyển đổi nền kinh tế hàng hóa nhỏ lẻ tự cấp tự túc thành nền sản xuất liên hoàn đại công nghiệp tập trung quy mô toàn cầu.',
+      title: 'Chuyển nền sản xuất nhỏ thành nền sản xuất lớn, hiện đại',
+      desc: 'Thay thế nền kinh tế hàng hóa giản đơn bằng nền kinh tế tập trung quy mô lớn, kích thích cải tiến kỹ thuật, tăng năng suất và tạo ra khối lượng của cải vật chất khổng lồ.',
       icon: <Users size={18} />,
       threshold: 25
     },
     {
-      title: 'Tối ưu hóa Phân công Quốc tế',
-      desc: 'Đẩy mạnh phân công lao động sâu rộng, liên kết chuỗi sản xuất toàn cầu, biến mọi quốc gia thành mắt xích thống nhất.',
+      title: 'Thực hiện xã hội hóa sản xuất',
+      desc: 'Đẩy mạnh phân công lao động xã hội cả theo chiều rộng lẫn chiều sâu. Liên kết các ngành, các lĩnh vực và các quốc gia lại thành một hệ thống sản xuất xã hội thống nhất.',
       icon: <Globe size={18} />,
       threshold: 10
     }
@@ -133,33 +133,33 @@ export function HistoricalRoleSection() {
 
   const cons = [
     {
-      title: 'Bản chất vị kỷ cực đoan',
-      desc: 'Mục đích sản xuất không vì an sinh số đông nhân dân lao động mà để chiếm đoạt giá trị thặng dư tối đa cho thiểu số giới tài phiệt.',
+      title: 'Mục đích sản xuất vì thiểu số',
+      desc: 'Nền sản xuất tư bản chủ nghĩa không nhằm mục đích phục vụ lợi ích của đông đảo quần chúng nhân dân lao động, mà cốt lõi vẫn là tìm kiếm giá trị thặng dư và phục vụ lợi ích của thiểu số giai cấp tư sản.',
       icon: <Skull size={18} />,
       threshold: 60
     },
     {
-      title: 'Hố sâu bất bình đẳng toàn cầu',
-      desc: 'Khoét sâu sự phân hóa giàu nghèo tột cùng: nhóm 1% dân số giàu nhất thâu tóm phần lớn của cải, đẩy hàng tỷ người vào nghèo khó.',
-      icon: <ScaleIcon size={18} />,
+      title: 'Gây ra chiến tranh và xung đột',
+      desc: 'Để tranh giành thị trường và thuộc địa, chủ nghĩa tư bản đã và đang tiếp tục là nguyên nhân trực tiếp hoặc gián tiếp gây ra các cuộc chiến tranh thế giới, xung đột khu vực và chiến tranh sắc tộc ở nhiều nơi.',
+      icon: <TrendingDown size={18} />,
       threshold: 75
     },
     {
-      title: 'Khủng hoảng & Chiến tranh sinh tồn',
-      desc: 'Tranh giành giật tài nguyên, thị trường là mầm mống trực tiếp/gián tiếp của các cuộc khủng hoảng chu kỳ và xung đột vũ trang tàn khốc.',
-      icon: <TrendingDown size={18} />,
+      title: 'Làm sâu sắc sự phân hóa giàu nghèo',
+      desc: 'Sự phân hóa này không chỉ diễn ra ngày càng trầm trọng trong lòng các quốc gia tư bản, mà còn khoét sâu hố ngăn cách giàu nghèo giữa các nhóm nước phát triển và các nước kém phát triển trên phạm vi toàn cầu do các chính sách bóc lột kiểu mới.',
+      icon: <ScaleIcon size={18} />,
       threshold: 90
     }
   ];
 
   return (
     <section className="py-24 px-4 bg-transparent relative overflow-hidden">
-      
+
       {/* Subtle Top Border */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -184,11 +184,11 @@ export function HistoricalRoleSection() {
 
         {/* 3-Column Layout: Pros Card | 3D Scale & Slider | Cons Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start relative">
-          
+
           {/* Left Side: Pros (Sáng / Tích cực) */}
           <div className={`lg:col-span-4 flex-1 bg-white border ${isProsActive ? 'border-emerald-300 shadow-emerald-900/5' : 'border-slate-100 shadow-sm'} rounded-[2rem] p-6 shadow-xl relative overflow-hidden transition-all duration-500 ${isProsActive ? 'opacity-100 scale-100' : 'opacity-40 scale-[0.98] grayscale-[30%]'}`}>
             <div className={`absolute inset-0 bg-gradient-to-br from-emerald-50 to-transparent pointer-events-none transition-opacity duration-500 ${isProsActive ? 'opacity-100' : 'opacity-0'}`} />
-            
+
             <div className="relative z-10">
               <div className="flex flex-col items-center text-center gap-2 mb-6">
                 <div className="p-3 bg-emerald-100 border border-emerald-200 text-emerald-700 rounded-full shadow-sm">
@@ -202,12 +202,12 @@ export function HistoricalRoleSection() {
 
               <div className="space-y-4">
                 {pros.map((item, i) => (
-                  <motion.div 
-                    key={i} 
+                  <motion.div
+                    key={i}
                     initial={{ opacity: 0, x: -20, height: 0 }}
                     animate={
-                      sliderVal <= item.threshold 
-                        ? { opacity: 1, x: 0, height: 'auto', marginBottom: 16 } 
+                      sliderVal <= item.threshold
+                        ? { opacity: 1, x: 0, height: 'auto', marginBottom: 16 }
                         : { opacity: 0, x: -20, height: 0, marginBottom: 0 }
                     }
                     transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
@@ -224,9 +224,9 @@ export function HistoricalRoleSection() {
                     </p>
                   </motion.div>
                 ))}
-                
+
                 {/* Empty state hint */}
-                {sliderVal > 40 && isProsActive && (
+                {!isProsActive && (
                   <p className="text-xs text-slate-400 italic text-center py-4 font-medium animate-pulse">
                     Kéo sang trái...
                   </p>
@@ -243,7 +243,7 @@ export function HistoricalRoleSection() {
                 <directionalLight position={[10, 10, 5]} intensity={1.5} color="#ffffff" castShadow />
                 <directionalLight position={[-10, 5, -5]} intensity={0.5} color="#cbd5e1" />
                 <Environment preset="city" />
-                
+
                 <Float speed={1.5} rotationIntensity={0} floatIntensity={0.5}>
                   <BalanceScale3D tiltValue={sliderVal} />
                 </Float>
@@ -257,7 +257,7 @@ export function HistoricalRoleSection() {
                 <span className={`transition-colors duration-300 ${isBalanced ? 'text-slate-800' : 'text-slate-400'}`}>Cân bằng</span>
                 <span className={`transition-colors duration-300 ${isConsActive ? 'text-[#991B1B]' : 'text-slate-400'}`}>Tiêu cực</span>
               </div>
-              
+
               <div className="relative w-full flex items-center h-8">
                 <input
                   type="range"
@@ -269,7 +269,7 @@ export function HistoricalRoleSection() {
                   }}
                   className="absolute w-full h-3 bg-slate-200 rounded-full appearance-none cursor-pointer z-20 outline-none shadow-inner transition-all"
                   style={{
-                    background: `linear-gradient(to right, #10b981 0%, #10b981 ${sliderVal}%, #991B1B ${sliderVal}%, #991B1B 100%)`
+                    background: `linear-gradient(to right, #991B1B 0%, #991B1B ${sliderVal}%, #10b981 ${sliderVal}%, #10b981 100%)`
                   }}
                 />
                 {/* Center tick */}
@@ -282,7 +282,7 @@ export function HistoricalRoleSection() {
           {/* Right Side: Cons (Tối / Hạn chế) */}
           <div className={`lg:col-span-4 flex-1 bg-white border ${isConsActive ? 'border-red-300 shadow-red-900/5' : 'border-slate-100 shadow-sm'} rounded-[2rem] p-6 shadow-xl relative overflow-hidden transition-all duration-500 ${isConsActive ? 'opacity-100 scale-100' : 'opacity-40 scale-[0.98] grayscale-[30%]'}`}>
             <div className={`absolute inset-0 bg-gradient-to-bl from-red-50 to-transparent pointer-events-none transition-opacity duration-500 ${isConsActive ? 'opacity-100' : 'opacity-0'}`} />
-            
+
             <div className="relative z-10">
               <div className="flex flex-col items-center text-center gap-2 mb-6">
                 <div className="p-3 bg-red-100 border border-red-200 text-[#991B1B] rounded-full shadow-sm">
@@ -296,12 +296,12 @@ export function HistoricalRoleSection() {
 
               <div className="space-y-4">
                 {cons.map((item, i) => (
-                  <motion.div 
-                    key={i} 
+                  <motion.div
+                    key={i}
                     initial={{ opacity: 0, x: 20, height: 0 }}
                     animate={
-                      sliderVal >= item.threshold 
-                        ? { opacity: 1, x: 0, height: 'auto', marginBottom: 16 } 
+                      sliderVal >= item.threshold
+                        ? { opacity: 1, x: 0, height: 'auto', marginBottom: 16 }
                         : { opacity: 0, x: 20, height: 0, marginBottom: 0 }
                     }
                     transition={{ duration: 0.4, type: "spring", stiffness: 100 }}
@@ -320,7 +320,7 @@ export function HistoricalRoleSection() {
                 ))}
 
                 {/* Empty state hint */}
-                {sliderVal < 60 && isConsActive && (
+                {!isConsActive && (
                   <p className="text-xs text-slate-400 italic text-center py-4 font-medium animate-pulse">
                     Kéo sang phải...
                   </p>
