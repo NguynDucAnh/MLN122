@@ -1,192 +1,374 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,600&family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 @import "tailwindcss";
 
+/* ============================
+   DESIGN TOKENS
+   
+   Palette grounded in actual printing:
+   - Paper isn't uniform cream — it's mottled, with foxing spots
+   - Ink doesn't sit perfectly — it spreads, bleeds, has density
+   - Red ink on newsprint runs and bleeds differently than black
+   ============================ */
 @theme {
-  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
-  --font-display: "Playfair Display", serif;
+  --font-masthead: "UnifrakturMaguntia", "Old English Text MT", serif;
+  --font-headline: "Spectral", "Georgia", serif;
+  --font-body: "Crimson Pro", "Georgia", serif;
+  --font-label: "Zilla Slab", "Rockwell", serif;
+  --font-data: "IBM Plex Mono", "Courier New", monospace;
   
-  --color-biotech-dark: #040714;
-  --color-biotech-gray: #0d122b;
-  --color-gold-accent: #d4af37;
-  --color-red-coral: #ff5e3a;
-  --color-cyan-glow: #7fd8ff;
-}
-
-body {
-  @apply bg-[#040714] text-slate-100 antialiased overflow-x-hidden selection:bg-amber-500/30 selection:text-white;
-}
-
-/* Custom scrollbar for biotech theme */
-::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-}
-::-webkit-scrollbar-track {
-  background: #040714; 
-}
-::-webkit-scrollbar-thumb {
-  background: #1b264f; 
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #d4af37; 
+  /* Mottled paper palette — not a single cream */
+  --color-paper-fresh: #f5f0e1;
+  --color-paper-aged: #e8dcc4;
+  --color-paper-foxed: #d9cab0;
+  --color-paper-stained: #c8b898;
+  
+  /* Ink as material — density matters */
+  --color-ink-full: #100d08;
+  --color-ink-set: #2a231a;
+  --color-ink-spread: #4a3f2e;
+  --color-ink-ghost: #7a6e5a;
+  
+  /* Red ink — the only accent, used with restraint */
+  --color-red-press: #a01818;
+  --color-red-bleed: #6b1010;
+  --color-red-faint: #c44040;
+  
+  /* Functional */
+  --color-overlay: rgba(245, 240, 225, 0.92);
 }
 
 /* ============================
-   GLOWING PULSE ANIMATIONS
-   ============================ */
-@keyframes bioPulse {
-  0%, 100% {
-    transform: scale(1) translate(-50%, -50%);
-    opacity: 0.15;
-    filter: blur(80px);
-  }
-  50% {
-    transform: scale(1.15) translate(-45%, -55%);
-    opacity: 0.3;
-    filter: blur(100px);
-  }
-}
-
-.bio-pulse-glow-1 {
-  animation: bioPulse 12s infinite ease-in-out;
-}
-
-.bio-pulse-glow-2 {
-  animation: bioPulse 16s infinite ease-in-out reverse;
-}
-
-/* ============================
-   SHIMMER EFFECT for cards
-   ============================ */
-@keyframes shimmer {
-  0% { background-position: -200% center; }
-  100% { background-position: 200% center; }
-}
-
-.shimmer-text {
-  background: linear-gradient(
-    90deg,
-    #d4af37 0%,
-    #fff8dc 40%,
-    #d4af37 60%,
-    #b8952b 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: shimmer 4s linear infinite;
-}
-
-/* ============================
-   SCANNER LINE for tech feel
-   ============================ */
-@keyframes scanLine {
-  0% { top: 0%; opacity: 0.6; }
-  90% { opacity: 0.6; }
-  100% { top: 100%; opacity: 0; }
-}
-
-.scan-line::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(127, 216, 255, 0.5), transparent);
-  animation: scanLine 4s linear infinite;
-}
-
-/* ============================
-   TYPING CURSOR  
-   ============================ */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-.cursor-blink::after {
-  content: '|';
-  animation: blink 1s step-end infinite;
-  color: #d4af37;
-}
-
-/* ============================
-   FLOAT ANIMATION
-   ============================ */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-}
-
-.float-anim {
-  animation: float 5s ease-in-out infinite;
-}
-
-/* ============================
-   GLOW PULSE for highlight cards
-   ============================ */
-@keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.1); }
-  50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.25), 0 0 50px rgba(212, 175, 55, 0.1); }
-}
-
-.glow-gold {
-  animation: glowPulse 3s ease-in-out infinite;
-}
-
-/* ============================
-   SMOOTH SCROLL
+   BASE
    ============================ */
 html {
   scroll-behavior: smooth;
+  font-size: 17px;
+}
+
+body {
+  background-color: var(--color-paper-aged);
+  color: var(--color-ink-full);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: rgba(160, 24, 24, 0.15);
+  color: var(--color-ink-full);
 }
 
 /* ============================
-   INPUT RANGE STYLING (slider)
+   SCROLLBAR — ink-stained
    ============================ */
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-paper-foxed); }
+::-webkit-scrollbar-thumb { background: var(--color-ink-spread); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-full); }
+
+/* ============================
+   PAPER TEXTURE — multi-layer noise
+   Layered noise creates mottled, uneven aging
+   ============================ */
+.paper-grain {
+  position: relative;
+}
+.paper-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
 }
 
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #d4af37;
-  cursor: pointer;
-  border: 2px solid #040714;
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-  transition: box-shadow 0.2s;
+/* Foxing spots — age stains at specific spots */
+.foxing-tl::after {
+  content: '';
+  position: absolute;
+  top: -20px; left: -20px;
+  width: 200px; height: 200px;
+  background: radial-gradient(ellipse at center, rgba(180, 160, 120, 0.2) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
-
-input[type="range"]::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 16px rgba(212, 175, 55, 0.8);
-}
-
-input[type="range"]::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: #d4af37;
-  cursor: pointer;
-  border: 2px solid #040714;
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+.foxing-br::after {
+  content: '';
+  position: absolute;
+  bottom: -30px; right: -10px;
+  width: 250px; height: 250px;
+  background: radial-gradient(ellipse at center, rgba(170, 150, 110, 0.18) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 /* ============================
-   CARD HOVER LIFT
+   RULES — typographic separators
+   Real newspaper rules have weight and rhythm
    ============================ */
-.card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+.rule-heavy {
+  border-top: 3px solid var(--color-ink-full);
+}
+.rule-double {
+  border-top: 2px solid var(--color-ink-full);
+  box-shadow: 0 3px 0 0 var(--color-paper-fresh), 0 4px 0 0 var(--color-ink-full);
+  padding-top: 3px;
+}
+.rule-light {
+  border-top: 1px solid var(--color-ink-ghost);
+}
+.rule-red {
+  border-top: 1.5px solid var(--color-red-press);
+}
+.rule-col {
+  border-right: 1px solid rgba(74, 63, 46, 0.2);
 }
 
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+/* ============================
+   TYPE SCALE
+   
+   Spectral is sharper and more editorial than Playfair.
+   Crimson Pro has real text-face design for sustained reading.
+   IBM Plex Mono for data/labels — industrial, not decorative.
+   ============================ */
+
+/* Display: masthead only, never elsewhere */
+.t-masthead {
+  font-family: var(--font-masthead);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 0.85;
+  color: var(--color-ink-full);
+}
+
+/* Headlines: Spectral at heavy weights */
+.t-headline {
+  font-family: var(--font-headline);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--color-ink-full);
+}
+.t-headline-lg { font-size: clamp(1.8rem, 4vw, 3.2rem); }
+.t-headline-md { font-size: clamp(1.2rem, 2.5vw, 1.8rem); }
+.t-headline-sm { font-size: clamp(0.95rem, 1.5vw, 1.15rem); }
+
+/* Deck / subhead */
+.t-deck {
+  font-family: var(--font-headline);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.35;
+  color: var(--color-ink-set);
+  font-size: clamp(0.9rem, 1.8vw, 1.15rem);
+}
+
+/* Body text */
+.t-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.65;
+  color: var(--color-ink-set);
+  font-size: 0.95rem;
+}
+
+/* Labels / bylines */
+.t-label {
+  font-family: var(--font-label);
+  font-weight: 500;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-ghost);
+}
+
+/* Data / monospace */
+.t-data {
+  font-family: var(--font-data);
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--color-ink-spread);
+}
+
+/* Drop cap — the single typographic moment in each lead */
+.drop-cap::first-letter {
+  font-family: var(--font-headline);
+  font-weight: 800;
+  float: left;
+  font-size: 3.8em;
+  line-height: 0.75;
+  margin-right: 0.08em;
+  margin-top: 0.05em;
+  color: var(--color-ink-full);
+}
+
+/* ============================
+   TYPEWRITER — the only animation in the hero
+   One orchestrated moment, not scattered effects
+   ============================ */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.typewriter-cursor::after {
+  content: '▌';
+  animation: cursorBlink 0.75s step-end infinite;
+  color: var(--color-red-press);
+  font-weight: 300;
+  margin-left: 1px;
+}
+
+/* ============================
+   SCROLL REVEAL — subtle, not flashy
+   Content fades up with a slight blur like ink
+   settling into paper. No bounce, no scale.
+   ============================ */
+@keyframes inkSettle {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* ============================
+   COLUMN INTERACTION — Chapter 1
+   Hover expands the column, others yield
+   ============================ */
+.col-group {
+  display: flex;
+  gap: 0;
+}
+.col-item {
+  flex: 1;
+  overflow: hidden;
+  transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+.col-item .col-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.45s ease, opacity 0.35s ease 0.1s;
+}
+
+/* Desktop hover expand */
+@media (min-width: 769px) {
+  .col-group:hover .col-item { flex: 0.5; }
+  .col-group:hover .col-item:hover { flex: 3; }
+  .col-group:hover .col-item:hover .col-body {
+    max-height: 500px;
+    opacity: 1;
+  }
+}
+
+/* Mobile: always show body */
+@media (max-width: 768px) {
+  .col-group { flex-direction: column; }
+  .col-item { border-right: none !important; }
+  .col-item .col-body { max-height: none; opacity: 1; }
+}
+
+/* ============================
+   INVESTIGATION FLOOR — Chapter 2
+   Red border reveals on hover
+   ============================ */
+.floor {
+  border-left: 3px solid transparent;
+  transition: border-color 0.3s, background-color 0.3s;
+  cursor: pointer;
+}
+.floor:hover, .floor.is-active {
+  border-left-color: var(--color-red-press);
+  background-color: rgba(160, 24, 24, 0.03);
+}
+
+/* Classified stamp */
+.stamp {
+  display: inline-block;
+  border: 2px solid var(--color-red-press);
+  color: var(--color-red-press);
+  padding: 2px 12px;
+  transform: rotate(-4deg);
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+/* Dashed classified border */
+.classified {
+  border: 2px dashed var(--color-ink-spread);
+}
+
+/* ============================
+   DIPTYCH — Chapter 3
+   ============================ */
+.diptych-light {
+  background-color: var(--color-paper-fresh);
+}
+.diptych-dark {
+  background-color: #2e2820;
+  color: #ddd5c5;
+}
+
+/* ============================
+   BURN — Footer
+   The only dramatic effect, earned by restraint elsewhere
+   ============================ */
+@keyframes emberPulse {
+  0%, 100% {
+    box-shadow:
+      inset 0 0 20px rgba(200, 60, 0, 0.0),
+      inset 0 0 60px rgba(180, 40, 0, 0.0);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 20px rgba(200, 60, 0, 0.2),
+      inset 0 0 60px rgba(180, 40, 0, 0.08);
+  }
+}
+
+/* ============================
+   TENTACLE — the signature element
+   SVG octopus tentacles that connect sections
+   Drawn with a CSS stroke animation
+   ============================ */
+@keyframes drawTentacle {
+  from { stroke-dashoffset: 400; }
+  to { stroke-dashoffset: 0; }
+}
+.tentacle-draw {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: drawTentacle 2s ease-out forwards;
+}
+
+/* ============================
+   REDUCED MOTION
+   ============================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 768px) {
+  html { font-size: 15px; }
+  .rule-col { border-right: none; }
 }

@@ -1,279 +1,206 @@
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
-import { Landmark, Users, Building, ShieldCheck, HelpCircle, FileText, Globe2 } from 'lucide-react';
+import { InkSettle } from '../hooks';
 
-interface StructureTier {
-  id: number;
-  name: string;
-  shortTitle: string;
-  themeColor: string;
-  textColor: string;
-  bgColor: string;
-  borderColor: string;
-  title: string;
-  bulletPoints: string[];
-  thesis: string;
-  illustration: string;
+/**
+ * CHAPTER 2 — State Monopoly Capitalism
+ * 
+ * Design decisions:
+ * - The classified document aesthetic is the ONE structural device in this section.
+ *   Dashed border + stamp = investigation metaphor.
+ * - Building diagram is interactive — click a floor to reveal its content.
+ *   This interaction mirrors the "investigation" of peeling back layers.
+ * - Red accent used only for the active floor's border — consistent restraint.
+ * - Floor details use bullet points with red squares, keeping visual rhythm.
+ */
+
+interface FloorDef {
+  id: string;
+  label: string;
+  sub: string;
+  headline: string;
+  summary: string;
+  body: string;
+  bullets?: string[];
 }
 
-const structureTiers: StructureTier[] = [
+const floors: FloorDef[] = [
   {
-    id: 1,
-    name: "TẦNG THƯỢNG (UPPER DECK)",
-    shortTitle: "Cơ chế Nhân sự Đa nguyên",
-    themeColor: "#ff5e3a",
-    textColor: "text-[#ff5e3a]",
-    bgColor: "bg-[#ff5e3a]/10",
-    borderColor: "border-[#ff5e3a]/30",
-    title: "Cơ chế Quan hệ Nhân sự & Thỏa hiệp Đa nguyên",
-    bulletPoints: [
-      "Sự xuất hiện của thể chế đa nguyên chính trị giúp phân chia quyền lực dập tắt bớt mâu thuẫn đối kháng giai cấp.",
-      "Các thế lực tư bản độc quyền thiết lập cơ chế thỏa hiệp ngầm đứng sau các đảng phái chính trị lớn để phân chia quyền lợi cùng tồn tại, không cho bất kỳ tập đoàn đơn lẻ nào có quyền độc tôn tuyệt đối hại đến cả hệ thống."
-    ],
-    thesis: "Nhà nước tư bản hiện đại đóng vai trò 'Ủy ban quản lý công vụ chung' của giai cấp tư sản lớn, giải quyết tranh chấp và phân xử công bằng lợi ích nội bộ.",
-    illustration: "Mối liên kết nhân sự đan chéo giữa các chính trị gia quốc hội và hội đồng quản trị của các tập đoàn nghìn tỷ đô."
+    id: 'f1', label: 'TẦNG THƯỢNG', sub: 'Cơ chế Quan hệ Nhân sự',
+    headline: 'ĐA NGUYÊN QUYỀN LỰC: AI THỰC SỰ NẮM QUYỀN?',
+    summary: 'Không phe nhóm nào được độc tôn — các thế lực tư bản buộc phải thỏa hiệp.',
+    body: 'Sự nâng cao trình độ dân trí và cạnh tranh xã hội làm thay đổi quan hệ nhân sự trong bộ máy nhà nước tư sản. Thể chế đa nguyên trong phân chia quyền lực trở nên phổ biến. Các thế lực tư bản độc quyền phải thiết lập cơ chế thỏa hiệp để cùng tồn tại, không cho phép bất kỳ phe nhóm nào độc tôn quyền lực chính trị.',
   },
   {
-    id: 2,
-    name: "TẦNG TRUNG (MAIN FLOOR)",
-    shortTitle: "Sở hữu & Ngân sách Quốc gia",
-    themeColor: "#d4af37",
-    textColor: "text-[#d4af37]",
-    bgColor: "bg-[#d4af37]/10",
-    borderColor: "border-[#d4af37]/30",
-    title: "Sự phân lập Sở hữu Nhà nước & Giải phóng rủi ro tư nhân",
-    bulletPoints: [
-      "Quyền quyết định ngân sách tài khóa thuộc về cơ quan lập pháp (Quốc hội), quản lý chặt chẽ giới hành pháp bằng hệ thống luật pháp tư sản nghiêm ngặt.",
-      "Cơ chế 'Gánh vác rủi ro thay tư nhân': Nhà nước trực tiếp bỏ tiền thuế của dân ra đầu tư các ngành nghiên cứu khoa học cơ bản rủi ro cực cao, xây dựng hạ tầng cơ sở tốn kém, và dùng quỹ khẩn cấp bơm giải cứu các tập đoàn 'Too Big To Fail' khi khủng hoảng."
+    id: 'f2', label: 'TẦNG GIỮA', sub: 'Sở hữu & Ngân sách Nhà nước',
+    headline: 'NGÂN SÁCH CÔNG — TẤM ĐỆM CHO TƯ NHÂN MẠO HIỂM',
+    summary: 'Quyền chi ngân sách thuộc lập pháp; nhà nước gánh rủi ro lớn thay tư nhân.',
+    body: 'Việc ra quyết định chi tiêu ngân sách thuộc thẩm quyền của Nghị viện/Quốc hội, trong khi Chính phủ bị giới hạn chặt bởi luật ngân sách. Đầu tư công ngày càng tập trung gánh vác rủi ro lớn thay khối tư nhân:',
+    bullets: [
+      'Nghiên cứu khoa học cơ bản — chi phí khổng lồ, lợi nhuận không trực tiếp',
+      'Xây dựng kết cấu hạ tầng và đáp ứng nhu cầu xã hội',
+      'Dùng ngân sách giải cứu các tập đoàn độc quyền khỏi phá sản trong khủng hoảng',
     ],
-    thesis: "Xã hội hóa các chi phí rủi ro tổn thất, trong khi tư nhân hóa trọn vẹn mọi dòng lợi nhuận phát sinh khi thành công.",
-    illustration: "Các gói cứu trợ khổng lồ của Ngân hàng trung ương Mỹ (Fed) trị giá hàng nghìn tỷ USD cứu nguy các ngân hàng thương mại lớn năm 2008."
   },
   {
-    id: 3,
-    name: "TẦNG TRỆT (BASEMENT ENGINE)",
-    shortTitle: "Công cụ Điều tiết & Viện trợ",
-    themeColor: "#7fd8ff",
-    textColor: "text-[#7fd8ff]",
-    bgColor: "bg-[#7fd8ff]/10",
-    borderColor: "border-[#7fd8ff]/30",
-    title: "Bộ máy điều tiết vận hành như Công ty Cổ phần",
-    bulletPoints: [
-      "Bộ máy nhà nước tư sản hiện đại áp dụng triệt để cách quản trị hiệu suất của doanh nghiệp tư nhân khổng lồ, xem quốc gia như một công ty cổ phần lớn phục vụ cổ đông chính.",
-      "Viện trợ nước ngoài kiểu mới: Thực chất là công cụ thúc đẩy tiêu thụ hàng hóa tồn đọng trong nước, chuyển giao các công nghệ lỗi thời của các tập đoàn lớn bằng cách buộc nước nhận viện trợ phải mua sản phẩm chỉ định."
-    ],
-    thesis: "Viện trợ không vị tha, mà là dòng tuần hoàn vốn kích cầu xuất khẩu tư bản nội địa ra thị trường toàn cầu dưới nhãn mác nhân đạo.",
-    illustration: "Các khoản tín dụng ràng buộc bắt buộc nước đi vay phải thuê nhà thầu và kỹ sư chính của nước tài trợ."
-  }
+    id: 'f3', label: 'TẦNG NỀN', sub: 'Công cụ Điều tiết Kinh tế',
+    headline: 'VIỆN TRỢ NƯỚC NGOÀI: VŨ KHÍ GIẢI QUYẾT HÀNG TỒN KHO',
+    summary: 'Nhà nước vận hành như công ty cổ phần — viện trợ thực chất là xuất khẩu hàng tồn đọng.',
+    body: 'Chính phủ và Nghị viện tư sản hiện đại được tổ chức và vận hành tương tự một công ty cổ phần, nơi các quyết sách chịu ảnh hưởng lớn từ các tập đoàn tài phiệt. Các khoản viện trợ ưu đãi nước ngoài thực chất là công cụ điều tiết kinh tế trong nước: giải quyết hàng hóa tồn đọng, công nghệ lỗi thời bằng cách buộc nước nhận viện trợ phải mua thiết bị, hàng hóa và thuê chuyên gia từ nước cung cấp.',
+  },
 ];
 
-export function StateMonopolySection() {
-  const [selectedTierId, setSelectedTierId] = useState(2); // Start on main floor (Sở hữu)
-
-  const activeTier = structureTiers.find(t => t.id === selectedTierId) || structureTiers[1];
+function BuildingSVG({ active, onFloor }: { active: string | null; onFloor: (id: string) => void }) {
+  const floorRects = [
+    { id: 'f1', y: 15, h: 65 },
+    { id: 'f2', y: 90, h: 65 },
+    { id: 'f3', y: 165, h: 65 },
+  ];
 
   return (
-    <section className="py-24 px-4 bg-[#070b21] relative border-t border-[#131a3a] overflow-hidden">
-      
-      {/* Background radial highlights */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_40%,#11163b,transparent_70%)] opacity-40 pointer-events-none" />
+    <svg viewBox="0 0 240 260" className="w-full max-w-[260px] mx-auto" fill="none" stroke="var(--color-ink-full)">
+      {/* Roof */}
+      <path d="M35 15 L120 -15 L205 15" strokeWidth="2" />
+      <line x1="120" y1="-15" x2="120" y2="-30" strokeWidth="1.5" />
+      <rect x="120" y="-40" width="16" height="11" fill="var(--color-red-press)" opacity="0.6" strokeWidth="0" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
-        
-        {/* Section Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.7 }}
-          className="text-center mb-16"
-        >
-          <span className="text-[#ff5e3a] font-mono text-xs uppercase tracking-[0.22em] font-semibold block mb-3">
-            GIAI ĐOẠN 3: ĐỘC QUYỀN NHÀ NƯỚC HIỆN ĐẠI
-          </span>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-6">
-            BẢN ĐỒ GIẢI PHẪU: <br className="sm:hidden" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff5e3a] via-amber-200 to-[#d4af37]">
-              X-RAY BỘ MÁY NHÀ NƯỚC
-            </span>
+      {/* Building shell */}
+      <rect x="35" y="15" width="170" height="220" strokeWidth="2" />
+
+      {/* Columns */}
+      <line x1="75" y1="15" x2="75" y2="235" strokeWidth="0.8" opacity="0.4" />
+      <line x1="120" y1="15" x2="120" y2="235" strokeWidth="0.8" strokeDasharray="3 3" opacity="0.3" />
+      <line x1="165" y1="15" x2="165" y2="235" strokeWidth="0.8" opacity="0.4" />
+
+      {/* Door */}
+      <rect x="100" y="205" width="40" height="30" strokeWidth="1.5" />
+      <circle cx="135" cy="220" r="2" fill="var(--color-ink-spread)" />
+
+      {/* Steps */}
+      <rect x="90" y="234" width="60" height="5" strokeWidth="1" />
+
+      {/* Floor separators and interactive areas */}
+      {floorRects.map((fr) => {
+        const isActive = active === fr.id;
+        return (
+          <g key={fr.id} onClick={() => onFloor(fr.id)} className="cursor-pointer">
+            <line x1="35" y1={fr.y + fr.h} x2="205" y2={fr.y + fr.h} strokeWidth="1" />
+            <rect x="36" y={fr.y + 1} width="168" height={fr.h - 2}
+              fill={isActive ? 'rgba(160, 24, 24, 0.08)' : 'transparent'}
+              stroke={isActive ? 'var(--color-red-press)' : 'transparent'}
+              strokeWidth="1.5"
+              style={{ transition: 'all 0.3s' }}
+            />
+            {/* Windows */}
+            {[55, 85, 115, 145, 175].map((wx) => (
+              <rect key={wx} x={wx} y={fr.y + 25} width="10" height="14"
+                strokeWidth="0.7" opacity="0.35" />
+            ))}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+export function StateMonopolySection() {
+  const [active, setActive] = useState<string | null>(null);
+  const toggle = (id: string) => setActive(active === id ? null : id);
+
+  return (
+    <section
+      id="chapter2"
+      className="paper-grain classified relative py-14 mx-3 sm:mx-6 my-6"
+      style={{ backgroundColor: 'var(--color-paper-fresh)' }}
+    >
+      <div className="max-w-[960px] mx-auto px-4 sm:px-8">
+
+        {/* Header */}
+        <InkSettle>
+          <div className="flex items-center justify-between mb-1">
+            <span className="t-label">Trang 3 — Phóng sự Điều tra</span>
+            <span className="stamp">Tài liệu được giải mật</span>
+          </div>
+          <div className="rule-heavy mb-5" />
+        </InkSettle>
+
+        {/* Headline */}
+        <InkSettle delay={80}>
+          <h2 className="t-headline t-headline-lg text-center mb-2">
+            BÍ MẬT BÊN TRONG TÒA NHÀ TRẮNG:<br className="hidden sm:block" />
+            NHÀ NƯỚC TƯ BẢN VẬN HÀNH NHƯ<br className="hidden sm:block" />
+            MỘT CÔNG TY CỔ PHẦN
           </h2>
-          <p className="text-slate-400 text-base md:text-lg max-w-3xl mx-auto font-light leading-relaxed">
-            Nhấp trực tiếp vào từng tầng của <span className="text-[#ff5e3a] font-semibold">Tòa nhà Nghị viện cách điệu</span> bên dưới để X-ray và bóc trần cấu trúc bộ máy nhà nước vận hành như một công ty cổ phần.
+          <p className="t-deck text-center mb-8">
+            Phóng sự đặc biệt — Cách bộ máy nhà nước hiện đại phục vụ quyền lợi tư bản độc quyền
           </p>
-        </motion.div>
+        </InkSettle>
 
-        {/* Master layout: Left SVG Architectural building, Right Info panel */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-          
-          {/* Left Side: Dynamic SVG classical building */}
-          <div className="lg:col-span-6 bg-[#0d122b]/40 border border-[#1e295d]/60 rounded-3xl p-8 relative flex flex-col items-center justify-center min-h-[420px]">
-            
-            <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest absolute top-4 left-4">
-              Sơ đồ kiến trúc thể chế CNTB ĐQNN
-            </span>
+        <div className="rule-light mb-8" />
 
-            {/* Glowing state architecture SVG */}
-            <svg viewBox="0 0 320 340" fill="none" className="w-full max-w-[280px] h-auto transition-all duration-500" xmlns="http://www.w3.org/2000/svg">
-              
-              {/* Classical triangular roof pediment (representing Upper Deck) */}
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onClick={() => setSelectedTierId(1)}
+        {/* Building diagram + Floor details — side by side */}
+        <div className="flex flex-col md:flex-row gap-8 items-start">
+
+          {/* Building (sticky on desktop) */}
+          <InkSettle delay={150} className="md:w-[38%] flex-shrink-0">
+            <div className="md:sticky md:top-20">
+              <BuildingSVG active={active} onFloor={toggle} />
+              <p className="t-data text-center mt-3 italic text-[0.6rem]"
+                style={{ color: 'var(--color-ink-ghost)' }}
               >
-                <path
-                  d="M 160 20 L 40 80 L 280 80 Z"
-                  fill={selectedTierId === 1 ? "rgba(255, 94, 58, 0.25)" : "rgba(30, 41, 93, 0.15)"}
-                  stroke={selectedTierId === 1 ? "#ff5e3a" : "#1e295d"}
-                  strokeWidth="2"
-                  className="transition-all"
-                />
-                <circle cx="160" cy="50" r="10" stroke={selectedTierId === 1 ? "#ff5e3a" : "#1e295d"} strokeWidth="1.5" fill="none" />
-                <text x="160" y="73" fill={selectedTierId === 1 ? "#ff5e3a" : "#475569"} fontSize="10" textAnchor="middle" fontFamily="sans-serif" fontWeight="bold">NHÂN SỰ ĐA NGUYÊN</text>
-              </g>
-
-              {/* Main Pillars Floor (representing Middle Deck) */}
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onClick={() => setSelectedTierId(2)}
-              >
-                <rect
-                  x="50"
-                  y="90"
-                  width="220"
-                  height="120"
-                  rx="6"
-                  fill={selectedTierId === 2 ? "rgba(212, 175, 55, 0.2)" : "rgba(30, 41, 93, 0.1)"}
-                  stroke={selectedTierId === 2 ? "#d4af37" : "#1e295d"}
-                  strokeWidth="2"
-                  className="transition-all"
-                />
-                
-                {/* Visual pillars representing state institutions */}
-                <rect x="75" y="105" width="16" height="90" fill="none" stroke={selectedTierId === 2 ? "#d4af37" : "#1e295d"} strokeWidth="1" />
-                <rect x="125" y="105" width="16" height="90" fill="none" stroke={selectedTierId === 2 ? "#d4af37" : "#1e295d"} strokeWidth="1" />
-                <rect x="175" y="105" width="16" height="90" fill="none" stroke={selectedTierId === 2 ? "#d4af37" : "#1e295d"} strokeWidth="1" />
-                <rect x="225" y="105" width="16" height="90" fill="none" stroke={selectedTierId === 2 ? "#d4af37" : "#1e295d"} strokeWidth="1" />
-
-                <text x="160" y="150" fill={selectedTierId === 2 ? "#d4af37" : "#475569"} fontSize="10" textAnchor="middle" fontFamily="sans-serif" fontWeight="bold">SỞ HỮU & NGÂN SÁCH GÁNH RỦI RO</text>
-              </g>
-
-              {/* Heavy Basement Foundation (representing Ground Engine) */}
-              <g
-                className="cursor-pointer transition-all duration-300"
-                onClick={() => setSelectedTierId(3)}
-              >
-                <rect
-                  x="30"
-                  y="220"
-                  width="260"
-                  height="80"
-                  rx="6"
-                  fill={selectedTierId === 3 ? "rgba(127, 216, 255, 0.2)" : "rgba(30, 41, 93, 0.15)"}
-                  stroke={selectedTierId === 3 ? "#7fd8ff" : "#1e295d"}
-                  strokeWidth="2"
-                  className="transition-all"
-                />
-                {/* Gears inside ground floor representing mechanic engine */}
-                <line x1="60" y1="260" x2="260" y2="260" stroke={selectedTierId === 3 ? "#7fd8ff" : "#1e295d"} strokeWidth="1" strokeDasharray="5 5" />
-                <circle cx="110" cy="260" r="12" stroke={selectedTierId === 3 ? "#7fd8ff" : "#1e295d"} strokeWidth="1" fill="none" />
-                <circle cx="210" cy="260" r="12" stroke={selectedTierId === 3 ? "#7fd8ff" : "#1e295d"} strokeWidth="1" fill="none" />
-                
-                <text x="160" y="285" fill={selectedTierId === 3 ? "#7fd8ff" : "#475569"} fontSize="10" textAnchor="middle" fontFamily="sans-serif" fontWeight="bold">CÔNG CỤ ĐIỀU TIẾT CỦA CÔNG TY CỔ PHẦN</text>
-              </g>
-
-              {/* Heavy foundation soil line */}
-              <line x1="10" y1="315" x2="310" y2="315" stroke="#1e295d" strokeWidth="3" strokeLinecap="round" />
-            </svg>
-
-            {/* Quick tier button list */}
-            <div className="mt-6 flex flex-wrap gap-2 w-full justify-center">
-              {structureTiers.map((t) => (
-                <button
-                  key={t.id}
-                  onClick={() => setSelectedTierId(t.id)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold font-mono tracking-wider transition-colors cursor-pointer border ${
-                    selectedTierId === t.id
-                      ? 'bg-white text-[#040714] border-white'
-                      : 'bg-[#0d122b]/60 text-slate-400 border-[#1e295d]'
-                  }`}
-                  id={`building-tier-btn-${t.id}`}
-                >
-                  Tầng {t.id}
-                </button>
-              ))}
+                Sơ đồ mặt cắt bộ máy nhà nước — bấm vào tầng để xem chi tiết
+              </p>
             </div>
+          </InkSettle>
 
-          </div>
-
-          {/* Right Side: Deep Analysis Panel Card */}
-          <div className="lg:col-span-6 flex flex-col justify-between">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTier.id}
-                initial={{ opacity: 0, scale: 0.96, y: 15 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: -15 }}
-                transition={{ duration: 0.3 }}
-                className="bg-[#0d122b]/80 border border-[#1e295d] rounded-3xl p-6 sm:p-8 flex flex-col justify-between h-full backdrop-blur-md shadow-2xl relative"
-                id="state-monopoly-tier-card"
-              >
-                {/* Header Tag info */}
-                <div>
-                  <div className="flex items-center gap-2 mb-4">
-                    <span className={`w-2 h-2 rounded-full bg-current ${activeTier.textColor} animate-pulse`} />
-                    <span className="font-mono text-xs uppercase tracking-widest text-slate-400">
-                      CƠ CHẾ GIẢI PHẪU {activeTier.id} / 3
+          {/* Floor details */}
+          <div className="md:w-[62%] space-y-5">
+            {floors.map((fl, idx) => (
+              <InkSettle key={fl.id} delay={200 + idx * 100}>
+                <div
+                  className={`floor p-4 ${active === fl.id ? 'is-active' : ''}`}
+                  onClick={() => toggle(fl.id)}
+                  onMouseEnter={() => setActive(fl.id)}
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <span className="t-label px-2 py-0.5"
+                      style={{
+                        color: 'var(--color-red-press)',
+                        backgroundColor: 'rgba(160, 24, 24, 0.06)',
+                        fontSize: '0.55rem',
+                      }}
+                    >
+                      {fl.label}
+                    </span>
+                    <span className="t-data italic text-[0.65rem]" style={{ color: 'var(--color-ink-ghost)' }}>
+                      {fl.sub}
                     </span>
                   </div>
 
-                  <span className={`text-[10px] font-mono font-bold uppercase tracking-wider px-2.5 py-1 rounded-md mb-2 inline-block ${activeTier.bgColor} ${activeTier.textColor} border ${activeTier.borderColor}`}>
-                    {activeTier.name}
-                  </span>
+                  <h3 className="t-headline t-headline-md mb-1">{fl.headline}</h3>
+                  <p className="t-deck text-[0.85rem] mb-3">{fl.summary}</p>
+                  <p className="t-body text-[0.85rem]">{fl.body}</p>
 
-                  <h3 className="text-xl sm:text-2xl font-display font-bold text-white mt-2 leading-tight">
-                    {activeTier.title}
-                  </h3>
+                  {fl.bullets && (
+                    <ul className="mt-3 space-y-1.5 ml-3">
+                      {fl.bullets.map((b, i) => (
+                        <li key={i} className="t-body text-[0.8rem] flex gap-2 items-start"
+                          style={{ color: 'var(--color-ink-spread)' }}
+                        >
+                          <span className="mt-1 flex-shrink-0" style={{ color: 'var(--color-red-press)', fontSize: '0.5rem' }}>■</span>
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
 
-                  <div className="h-px w-full bg-gradient-to-r from-[#1e295d] to-transparent my-4" />
-
-                  {/* Bullet points detailing mechanism */}
-                  <div className="space-y-4 mb-6">
-                    {activeTier.bulletPoints.map((pt, i) => (
-                      <div key={i} className="flex gap-3 items-start">
-                        <Users className={`shrink-0 mt-0.5 ${activeTier.textColor}`} size={16} />
-                        <p className="text-slate-300 text-sm leading-relaxed">
-                          {pt}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                  {idx < floors.length - 1 && <div className="rule-light mt-4" />}
                 </div>
-
-                {/* Footnotes / Conclusions */}
-                <div className="space-y-4">
-                  {/* Analytical thesis */}
-                  <div className="bg-[#040714]/60 border-l-2 border-amber-500 p-4 rounded-r-xl">
-                    <span className="text-[10px] font-mono text-amber-500 uppercase tracking-widest font-bold block mb-1">
-                      💡 Bản Chất Quy Luật:
-                    </span>
-                    <p className="text-slate-300 text-xs italic leading-relaxed">
-                      "{activeTier.thesis}"
-                    </p>
-                  </div>
-
-                  {/* Real World Illustration details */}
-                  <div className="text-xs text-slate-400 flex items-start gap-2 font-mono">
-                    <span className="text-[#ff5e3a] font-bold">● Minh họa:</span>
-                    <span>{activeTier.illustration}</span>
-                  </div>
-                </div>
-
-              </motion.div>
-            </AnimatePresence>
+              </InkSettle>
+            ))}
           </div>
-
         </div>
 
+        <div className="rule-double mt-10" />
       </div>
     </section>
   );

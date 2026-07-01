@@ -1,0 +1,296 @@
+{
+  "meta": {
+    "lang": "vi",
+    "title": "Sự vận động của Chủ nghĩa Tư bản trong kỷ nguyên mới",
+    "subject": "Kinh tế Chính trị Mác - Lênin — MLN122",
+    "concept": "Tờ báo cũ sống động — Living Newspaper",
+    "newspaper_name": "THỜI BÁO TƯ BẢN",
+    "newspaper_tagline": "Cơ quan ngôn luận của Hệ thống — Phát hành từ Thế kỷ XIX đến nay",
+    "theme": {
+      "colors": {
+        "paper_base": "#f2ead8",
+        "paper_dark": "#e0d4b8",
+        "ink_black": "#1a1410",
+        "ink_faded": "#4a3f30",
+        "ink_red": "#b91c1c",
+        "ink_red_spread": "#7f1d1d",
+        "ink_gold_headline": "#92600a",
+        "overlay_blur": "rgba(242,234,216,0.85)"
+      },
+      "fonts": {
+        "masthead": "UnifrakturMaguntia hoặc serif cổ điển dạng blackletter",
+        "headline": "Playfair Display Bold — serif đậm, kiểu báo cũ",
+        "body_column": "IM Fell English hoặc Lora — serif nhẹ, dễ đọc",
+        "caption": "font monospace nhỏ, gợi máy đánh chữ"
+      },
+      "texture": "Nền giấy báo ố vàng có noise/grain nhẹ, các đường kẻ cột mờ theo chiều dọc như layout báo in. Viền trang có hiệu ứng rách/ố nhẹ ở góc.",
+      "global_animation": "Mỗi section: trang báo cũ mờ dần (blur + fade), được in đè (overprint) bằng ấn bản mới hơn — gợi CNTB liên tục lột xác qua các thời đại. Tít báo và nội dung tự gõ ra từng chữ (typewriter effect) khi cuộn tới."
+    }
+  },
+
+  "sections": [
+
+    {
+      "id": "hero",
+      "type": "newspaper-frontpage",
+      "edition": "ẤN BẢN ĐẶC BIỆT — KỶ NGUYÊN MỚI",
+      "design_note": "Trang đầu tiên của tờ báo. Layout 3 cột kiểu báo in thế kỷ 20. Masthead 'THỜI BÁO TƯ BẢN' xuất hiện trước, to, đậm, chiếm hết chiều ngang. Ngay bên dưới là đường kẻ ngang đôi kiểu báo cũ. Câu hook gõ ra từng chữ như máy đánh chữ trước khi tiêu đề lớn xuất hiện. Ảnh minh họa trung tâm: hình khắc gỗ (woodcut style) cách điệu về nhà máy công nghiệp hoặc bạch tuộc ôm địa cầu — dạng halftone đen trắng.",
+      "masthead": "THỜI BÁO TƯ BẢN",
+      "edition_line": "ẤN BẢN ĐẶC BIỆT ✦ KỶ NGUYÊN MỚI ✦ GIÁ: MỘT GIÁ TRỊ THẶNG DƯ",
+      "hook_typewriter": "Nếu chủ nghĩa tư bản là một sinh vật, nó đã chết theo dự đoán của Marx chưa?",
+      "headline": "SỰ VẬN ĐỘNG CỦA CHỦ NGHĨA TƯ BẢN TRONG KỶ NGUYÊN MỚI",
+      "deck": "Cạnh tranh, Độc quyền & Vai trò lịch sử",
+      "lead_column": "Trong bối cảnh toàn cầu hóa và cách mạng khoa học - công nghệ, chủ nghĩa tư bản độc quyền không hề đứng im mà luôn tự điều chỉnh để thích nghi. Sự vận động này tạo ra những biểu hiện vô cùng phức tạp ở cả cấp độ tư nhân lẫn nhà nước.",
+      "sidebar_toc": [
+        "Tr.2 — 5 Biểu hiện mới của Độc quyền Tư nhân",
+        "Tr.3 — Độc quyền Nhà nước dưới kính lúp",
+        "Tr.4 — Hai mặt của một đồng xu lịch sử",
+        "Tr.5 — Xã luận: Sinh vật này còn sống bao lâu?"
+      ],
+      "illustration_hint": "Woodcut/halftone đen trắng: bạch tuộc khổng lồ ôm địa cầu, các xúc tu vươn vào nhà máy, ngân hàng, tòa nhà chính phủ, cảng biển. Phong cách tranh biếm họa báo chí đầu thế kỷ 20."
+    },
+
+    {
+      "id": "chapter1",
+      "type": "newspaper-spread",
+      "edition": "TRANG 2 — KINH TẾ THẾ GIỚI",
+      "chapter": "Chương 1",
+      "headline": "NĂM XÚC TU CỦA BẠCH TUỘC ĐỘC QUYỀN ĐANG VƯƠN TỚI MỌI NGÓC NGÁCH THỊ TRƯỜNG",
+      "deck": "Phóng viên của chúng tôi tiết lộ những biểu hiện mới nhất của tư bản độc quyền trong điều kiện ngày nay",
+      "design_note": "Layout 5 cột báo, mỗi cột là một bài báo nhỏ tương ứng 1 trong 5 biểu hiện. Tít cột tự gõ ra khi cuộn tới. Các cột có đường kẻ dọc phân tách kiểu báo in. Ảnh minh họa mỗi cột: icon woodcut nhỏ (nhà máy, đồng tiền, tàu chở hàng, bản đồ, cờ). Hover vào cột → cột mở rộng, các cột khác thu nhỏ, nội dung chi tiết hiện ra.",
+      "columns": [
+        {
+          "id": "col1",
+          "column_number": 1,
+          "headline_col": "TẬP ĐOÀN XUYÊN QUỐC GIA: KHI MỘT CÔNG TY LỚN HƠN MỘT QUỐC GIA",
+          "byline": "Phóng viên Kinh tế — Concern & Conglomerate",
+          "illustration_hint": "Tháp nhà máy công nghiệp cắm cờ nhiều nước",
+          "summary": "Concern và Conglomerate — hai hình thái tổ chức độc quyền khổng lồ chi phối nền kinh tế hiện đại.",
+          "detail": {
+            "intro": "Quá trình liên kết độc quyền đã vượt khỏi giới hạn một ngành hay một quốc gia, hình thành các tổ chức mới với quy mô khổng lồ:",
+            "items": [
+              {
+                "term": "Concern",
+                "definition": "Tổ chức độc quyền đa ngành, bao gồm hàng trăm xí nghiệp thuộc các ngành nghề khác nhau và phân bố ở nhiều quốc gia. Ra đời nhằm đối phó cạnh tranh gay gắt và lách luật chống độc quyền."
+              },
+              {
+                "term": "Conglomerate",
+                "definition": "Kết hợp của hàng chục hãng vừa và nhỏ không có liên quan trực tiếp về sản xuất hay dịch vụ. Mục đích tối đa hóa lợi nhuận qua hoạt động chứng khoán và tài chính."
+              }
+            ]
+          }
+        },
+        {
+          "id": "col2",
+          "column_number": 2,
+          "headline_col": "TÀI PHIỆT THÂU TÓM CẢ NÔNG - THƯƠNG - TÍN - DỊCH VỤ",
+          "byline": "Phóng viên Tài chính — Chế độ ủy nhiệm",
+          "illustration_hint": "Đồng tiền với xúc tu vươn ra nhiều ngành",
+          "summary": "Tư bản tài chính không còn gói gọn trong công nghiệp - ngân hàng mà thâm nhập toàn bộ nền kinh tế.",
+          "detail": {
+            "intro": "Cách mạng khoa học công nghệ thúc đẩy dịch vụ, bảo hiểm, phần mềm phát triển mạnh, kéo theo sự mở rộng phạm vi của tư bản tài chính.",
+            "items": [
+              {
+                "term": "Phạm vi liên kết mới",
+                "definition": "Không chỉ công nghiệp - ngân hàng mà mở rộng sang: công - nông - thương - tín - dịch vụ, thậm chí công nghiệp - quân sự - dịch vụ quốc phòng."
+              },
+              {
+                "term": "Chế độ ủy nhiệm",
+                "definition": "Cổ phiếu phát hành mệnh giá nhỏ, số cổ đông tăng lên. Đại cổ đông nắm quyền ủy nhiệm từ cổ đông nhỏ để chi phối hướng đi công ty — tinh vi hơn 'chế độ tham dự' truyền thống."
+              }
+            ]
+          }
+        },
+        {
+          "id": "col3",
+          "column_number": 3,
+          "headline_col": "DÒNG VỐN ĐẢO CHIỀU: TIỀN KHÔNG CÒN CHẢY VỀ NAM",
+          "byline": "Phóng viên Thương mại Quốc tế — FDI & BOT",
+          "illustration_hint": "Mũi tên hai chiều giữa hai tòa nhà chọc trời ngang nhau",
+          "summary": "Từ những năm 1970, luồng vốn chủ yếu chảy qua lại giữa các nước phát triển với nhau.",
+          "detail": {
+            "intro": "Xuất khẩu tư bản có sự dịch chuyển lớn kể từ những năm 1970.",
+            "comparison_table": {
+              "title": "Điểm khác biệt của xuất khẩu tư bản hiện nay",
+              "headers": ["Tiêu chí", "Trước 1970", "Từ 1970 đến nay"],
+              "rows": [
+                ["Hướng xuất khẩu", "Nước phát triển → Nước kém phát triển", "Qua lại giữa các nước phát triển"],
+                ["Chủ thể", "Nhà nước & tập đoàn quốc gia", "Công ty xuyên quốc gia (TNCs)"],
+                ["Hình thức", "Khai thác tài nguyên, bóc lột nhân công", "FDI, BOT, BT kết hợp xuất khẩu hàng hóa"],
+                ["Tính chất", "Áp đặt thực dân", "Đề cao nguyên tắc cùng có lợi"]
+              ]
+            }
+          }
+        },
+        {
+          "id": "col4",
+          "column_number": 4,
+          "headline_col": "THỊ TRƯỜNG THẾ GIỚI: CUỘC GIẰNG CO GIỮA TOÀN CẦU VÀ KHU VỰC",
+          "byline": "Phóng viên Địa Kinh tế — EU, NAFTA, OPEC",
+          "illustration_hint": "Bản đồ thế giới tối giản với các vòng tròn khu vực chồng lên nhau",
+          "summary": "Toàn cầu hóa do TNCs và khu vực hóa qua liên minh kinh tế đang chạy song song và đan xen nhau.",
+          "detail": {
+            "intro": "Phân chia thị trường thế giới hiện nay là kết quả đan xen của hai xu hướng lớn:",
+            "items": [
+              {
+                "term": "Toàn cầu hóa",
+                "definition": "Sức mạnh bành trướng của TNCs thúc đẩy quốc tế hóa và hình thành chủ nghĩa tư bản độc quyền quốc tế."
+              },
+              {
+                "term": "Khu vực hóa",
+                "definition": "Hình thành liên minh kinh tế khu vực: EU, NAFTA, OPEC, MERCOSUR — các nước đang phát triển cũng liên kết lại để chống sức ép cường quốc."
+              }
+            ]
+          }
+        },
+        {
+          "id": "col5",
+          "column_number": 5,
+          "headline_col": "BIÊN GIỚI MỀM: CHINH PHỤC KHÔNG CẦN ĐẠI BÁC",
+          "byline": "Phóng viên Địa Chính trị — Biên giới kinh tế",
+          "illustration_hint": "Đường đứt nét vô hình vẽ vòng quanh các lục địa",
+          "summary": "Thay chiến tranh xâm lược bằng 'biên giới mềm' và bành trướng 'biên giới kinh tế' vô hình.",
+          "detail": {
+            "intro": "Chủ nghĩa thực dân cũ sụp đổ, các cường quốc chuyển sang phương thức mới.",
+            "items": [
+              {
+                "term": "Chiến lược biên giới mềm",
+                "definition": "Không chia cắt lãnh thổ bằng chiến tranh trực tiếp. Thay vào đó bành trướng 'biên giới kinh tế' qua đầu tư, thương mại và ảnh hưởng chính trị."
+              },
+              {
+                "term": "Rủi ro tiềm ẩn",
+                "definition": "Dù bề ngoài hòa bình, thế giới vẫn tiềm ẩn chạy đua vũ trang, chiến tranh lạnh phục hồi và xung đột thương mại do các tập đoàn lũng đoạn giật dây."
+              }
+            ]
+          }
+        }
+      ]
+    },
+
+    {
+      "id": "chapter2",
+      "type": "newspaper-investigation",
+      "edition": "TRANG 3 — PHÓNG SỰ ĐIỀU TRA",
+      "chapter": "Chương 2",
+      "headline": "BÍ MẬT BÊN TRONG TÒA NHÀ TRẮNG: NHÀ NƯỚC TƯ BẢN VẬN HÀNH NHƯ MỘT CÔNG TY CỔ PHẦN",
+      "deck": "Phóng sự đặc biệt — Cách bộ máy nhà nước hiện đại phục vụ quyền lợi tư bản độc quyền",
+      "design_note": "Layout phóng sự điều tra: tiêu đề lớn xuyên 3 cột trên cùng. Phía dưới là infographic dạng sơ đồ mặt cắt tòa nhà — nét vẽ mực bút đen kiểu bản vẽ kỹ thuật báo cũ. Khi cuộn, từng tầng của tòa nhà được đánh dấu mực đỏ rồi nội dung chi tiết hiện ra cạnh bên như chú thích sơ đồ. Viền khung có đường chấm đen kiểu 'tài liệu mật'.",
+      "investigation_stamp": "TÀI LIỆU ĐƯỢC GIẢI MẬT",
+      "building_diagram_caption": "Sơ đồ mặt cắt bộ máy nhà nước tư sản hiện đại — nguồn: phân tích nội bộ",
+      "floors": [
+        {
+          "id": "floor1",
+          "floor_label": "TẦNG THƯỢNG",
+          "subheading": "Cơ chế Quan hệ Nhân sự",
+          "column_headline": "ĐA NGUYÊN QUYỀN LỰC: AI THỰC SỰ NẮM QUYỀN?",
+          "summary": "Không phe nhóm nào được độc tôn — các thế lực tư bản buộc phải thỏa hiệp.",
+          "detail": "Sự nâng cao trình độ dân trí và cạnh tranh xã hội làm thay đổi quan hệ nhân sự trong bộ máy nhà nước tư sản. Thể chế đa nguyên trong phân chia quyền lực trở nên phổ biến. Các thế lực tư bản độc quyền phải thiết lập cơ chế thỏa hiệp để cùng tồn tại, không cho phép bất kỳ phe nhóm nào độc tôn quyền lực chính trị. Trọng tâm quyền lực nhiều khi thuộc về lực lượng trung dung, tạo ra các chính sách ôn hòa hơn trước đây."
+        },
+        {
+          "id": "floor2",
+          "floor_label": "TẦNG GIỮA",
+          "subheading": "Sở hữu & Ngân sách Nhà nước",
+          "column_headline": "NGÂN SÁCH CÔNG — TẤM ĐỆM CHO TƯ NHÂN MẠO HIỂM",
+          "summary": "Quyền chi ngân sách thuộc lập pháp; nhà nước gánh rủi ro lớn thay tư nhân.",
+          "detail": "Việc ra quyết định chi tiêu ngân sách thuộc thẩm quyền của Nghị viện/Quốc hội, trong khi Chính phủ bị giới hạn chặt bởi luật ngân sách. Đầu tư công ngày càng tập trung gánh vác rủi ro lớn thay khối tư nhân:",
+          "bullet_points": [
+            "Nghiên cứu khoa học cơ bản — chi phí khổng lồ, lợi nhuận không trực tiếp",
+            "Xây dựng kết cấu hạ tầng và đáp ứng nhu cầu xã hội",
+            "Dùng ngân sách giải cứu các tập đoàn độc quyền khỏi nguy cơ phá sản trong khủng hoảng"
+          ]
+        },
+        {
+          "id": "floor3",
+          "floor_label": "TẦNG NỀN",
+          "subheading": "Công cụ Điều tiết Kinh tế",
+          "column_headline": "VIỆN TRỢ NƯỚC NGOÀI: VŨ KHÍ GIẢI QUYẾT HÀNG TỒN KHO",
+          "summary": "Nhà nước vận hành như công ty cổ phần — viện trợ thực chất là xuất khẩu hàng tồn đọng.",
+          "detail": "Chính phủ và Nghị viện tư sản hiện đại được tổ chức và vận hành tương tự một công ty cổ phần, nơi các quyết sách chịu ảnh hưởng lớn từ các tập đoàn tài phiệt. Các khoản viện trợ ưu đãi nước ngoài thực chất là công cụ điều tiết kinh tế trong nước: giải quyết hàng hóa tồn đọng, công nghệ lỗi thời bằng cách buộc nước nhận viện trợ phải mua thiết bị, hàng hóa và thuê chuyên gia từ nước cung cấp."
+        }
+      ]
+    },
+
+    {
+      "id": "chapter3",
+      "type": "newspaper-diptych",
+      "edition": "TRANG 4 — CHUYÊN ĐỀ LỊCH SỬ",
+      "chapter": "Chương 3",
+      "headline": "HAI MẶT CỦA MỘT ĐỒNG XU: CÔNG LAO VĨ ĐẠI VÀ TỘI ÁC KHÔNG THỂ XÓA",
+      "design_note": "Màn hình chia đôi như hai tờ báo đặt cạnh nhau. Tờ trái: nền giấy kem sáng, tít chữ vàng đồng, tone trang trọng, ca ngợi. Tờ phải: nền giấy xám tối dần, mực đỏ loang từ góc dưới phải lên như vết máu thấm qua giấy — animation diễn ra theo tiến trình cuộn. Đường viền giữa hai tờ là một đường kẻ đứt đen dày, ở giữa ghi 'MÂU THUẪN CỐT LÕI'. Không có thanh trượt — hai tờ báo song song nhau, người xem tự đọc cả hai.",
+      "left_paper": {
+        "paper_name": "CÔNG BÁO TIẾN BỘ",
+        "paper_tagline": "Cơ quan ngôn luận của Văn minh Công nghiệp",
+        "theme": "light-cream",
+        "ink_color": "#92600a",
+        "headline_left": "CHỦ NGHĨA TƯ BẢN: CỖ MÁY TẠO RA VĂN MINH HIỆN ĐẠI",
+        "articles": [
+          {
+            "id": "positive1",
+            "headline": "Từ Cuốc Xẻng Tới Trí Tuệ Nhân Tạo: Hành Trình 300 Năm",
+            "body": "Chủ nghĩa tư bản đã chuyển đổi kỹ thuật lao động thủ công thô sơ lên cơ khí hóa, tự động hóa và tin học hóa. Đây là bệ phóng cho các cuộc cách mạng công nghiệp, đưa nhân loại vào thời đại kinh tế tri thức."
+          },
+          {
+            "id": "positive2",
+            "headline": "Nền Sản Xuất Lớn: Của Cải Vật Chất Tràn Ngập Thị Trường",
+            "body": "Thay thế kinh tế hàng hóa giản đơn bằng nền sản xuất tập trung quy mô lớn, hiện đại. Kích thích cải tiến kỹ thuật, tăng năng suất và tạo ra khối lượng của cải vật chất khổng lồ chưa từng có trong lịch sử."
+          },
+          {
+            "id": "positive3",
+            "headline": "Thế Giới Phẳng: Khi Các Quốc Gia Trở Thành Một Hệ Thống",
+            "body": "Đẩy mạnh phân công lao động xã hội cả theo chiều rộng lẫn chiều sâu. Liên kết các ngành, lĩnh vực và quốc gia lại thành một hệ thống sản xuất xã hội thống nhất."
+          }
+        ]
+      },
+      "right_paper": {
+        "paper_name": "BÁO PHÊ BÌNH",
+        "paper_tagline": "Sự thật mà họ không muốn bạn đọc",
+        "theme": "dark-bleeding-red",
+        "ink_color": "#b91c1c",
+        "red_spread_animation": "Mực đỏ loang dần từ góc dưới phải lên trên theo tiến trình cuộn — như vết máu thấm qua giấy báo",
+        "headline_right": "GIÁ CỦA TIẾN BỘ: CHIẾN TRANH, BÓC LỘT VÀ HỐ SÂU GIÀU NGHÈO",
+        "articles": [
+          {
+            "id": "negative1",
+            "headline": "Sản Xuất Vì Ai? Giá Trị Thặng Dư Chảy Về Túi Của Thiểu Số",
+            "body": "Nền sản xuất tư bản chủ nghĩa không nhằm phục vụ đông đảo quần chúng lao động. Cốt lõi vẫn là tìm kiếm giá trị thặng dư và phục vụ lợi ích của thiểu số giai cấp tư sản."
+          },
+          {
+            "id": "negative2",
+            "headline": "Hai Cuộc Đại Chiến Và Vô Vàn Xung Đột Khu Vực Mang Tên 'Thị Trường'",
+            "body": "Để tranh giành thị trường và thuộc địa, chủ nghĩa tư bản là nguyên nhân trực tiếp hoặc gián tiếp gây ra các cuộc chiến tranh thế giới, xung đột khu vực và chiến tranh sắc tộc ở nhiều nơi."
+          },
+          {
+            "id": "negative3",
+            "headline": "1% Dân Số Nắm 50% Của Cải: Bất Bình Đẳng Không Ngừng Leo Thang",
+            "body": "Phân hóa giàu nghèo ngày càng trầm trọng trong lòng mỗi quốc gia và khoét sâu hố ngăn cách giữa nước phát triển với nước kém phát triển trên toàn cầu do các chính sách bóc lột kiểu mới."
+          }
+        ]
+      },
+      "divider_label": "MÂU THUẪN CỐT LÕI: Tính xã hội hóa cao của lực lượng sản xuất >< Chế độ chiếm hữu tư nhân"
+    },
+
+    {
+      "id": "footer",
+      "type": "newspaper-obituary",
+      "edition": "TRANG 5 — XÃ LUẬN",
+      "design_note": "Layout xã luận (editorial) — cột chữ hẹp, nghiêm trang. Tờ báo từ từ nhàu nát, các góc cuộn lên, rồi trang giấy bắt đầu cháy dần từ mép (hiệu ứng burn/ember đỏ cam) — ẩn dụ cho giới hạn lịch sử tất yếu. Tiêu đề xã luận và kết luận hiện ra trước khi animation cháy bắt đầu. Câu hỏi mở là dòng chữ cuối cùng còn lại trước khi trang tắt.",
+      "editorial_headline": "XÃ LUẬN: SINH VẬT NÀY CÒN SỐNG BAO LÂU?",
+      "editorial_byline": "Ban Biên Tập — Thời Báo Tư Bản",
+      "burn_animation": "Trang báo cháy dần từ mép ngoài vào trong, màu ember đỏ cam, tro đen rơi xuống",
+      "conclusion": "Dù độc quyền tư nhân hay độc quyền nhà nước có thiên biến vạn hóa để tự cứu lấy mình, mọi sự điều chỉnh này chủ yếu vẫn nhằm bảo vệ sự tồn tại của hệ thống tư bản. Với những mâu thuẫn cốt lõi không thể tự khắc phục, chủ nghĩa tư bản mang trong mình giới hạn lịch sử tất yếu và không thể tồn tại vĩnh viễn.",
+      "open_question": "Vậy đến khi nào tờ báo này in số cuối cùng?",
+      "credits": {
+        "subject": "Kinh tế Chính trị Mác - Lênin",
+        "course_code": "MLN122",
+        "members": "__PLACEHOLDER_NHOM__",
+        "instructor": "__PLACEHOLDER_GIANG_VIEN__"
+      },
+      "references": [
+        "Giáo trình Kinh tế chính trị Mác - Lênin (2019 - Bộ GD&ĐT). Chương 4: Cạnh tranh và độc quyền trong nền kinh tế thị trường.",
+        "Slide bài giảng Session 15: Biểu hiện mới của độc quyền, độc quyền nhà nước trong điều kiện ngày nay.",
+        "Slide bài giảng Session 16: Vai trò lịch sử của chủ nghĩa tư bản."
+      ]
+    }
+
+  ]
+}
