@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -6,59 +6,39 @@
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-display: "Playfair Display", serif;
   
-  --color-biotech-dark: #040714;
-  --color-biotech-gray: #0d122b;
-  --color-gold-accent: #d4af37;
-  --color-red-coral: #ff5e3a;
-  --color-cyan-glow: #7fd8ff;
+  --color-brand-cream: #FDFBF7;
+  --color-brand-red: #991B1B;
+  --color-brand-navy: #1E3A8A;
+  --color-brand-gold: #B45309;
+  --color-brand-dark: #0F172A;
 }
 
 body {
-  @apply bg-[#040714] text-slate-100 antialiased overflow-x-hidden selection:bg-amber-500/30 selection:text-white;
+  @apply bg-[#FDFBF7] text-[#0F172A] antialiased overflow-x-hidden selection:bg-[#991B1B]/20 selection:text-[#991B1B];
+  /* Subtle paper/grid background pattern */
+  background-image: linear-gradient(rgba(30, 58, 138, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 138, 0.03) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 
-/* Custom scrollbar for biotech theme */
+/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #040714; 
+  background: #FDFBF7; 
 }
 ::-webkit-scrollbar-thumb {
-  background: #1b264f; 
+  background: #cbd5e1; 
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #d4af37; 
+  background: #94a3b8; 
 }
 
 /* ============================
-   GLOWING PULSE ANIMATIONS
-   ============================ */
-@keyframes bioPulse {
-  0%, 100% {
-    transform: scale(1) translate(-50%, -50%);
-    opacity: 0.15;
-    filter: blur(80px);
-  }
-  50% {
-    transform: scale(1.15) translate(-45%, -55%);
-    opacity: 0.3;
-    filter: blur(100px);
-  }
-}
-
-.bio-pulse-glow-1 {
-  animation: bioPulse 12s infinite ease-in-out;
-}
-
-.bio-pulse-glow-2 {
-  animation: bioPulse 16s infinite ease-in-out reverse;
-}
-
-/* ============================
-   SHIMMER EFFECT for cards
+   SHIMMER EFFECT for text
    ============================ */
 @keyframes shimmer {
   0% { background-position: -200% center; }
@@ -68,35 +48,16 @@ body {
 .shimmer-text {
   background: linear-gradient(
     90deg,
-    #d4af37 0%,
-    #fff8dc 40%,
-    #d4af37 60%,
-    #b8952b 100%
+    #991B1B 0%,
+    #B45309 40%,
+    #991B1B 60%,
+    #1E3A8A 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: shimmer 4s linear infinite;
-}
-
-/* ============================
-   SCANNER LINE for tech feel
-   ============================ */
-@keyframes scanLine {
-  0% { top: 0%; opacity: 0.6; }
-  90% { opacity: 0.6; }
-  100% { top: 100%; opacity: 0; }
-}
-
-.scan-line::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(127, 216, 255, 0.5), transparent);
-  animation: scanLine 4s linear infinite;
+  animation: shimmer 5s linear infinite;
 }
 
 /* ============================
@@ -110,31 +71,19 @@ body {
 .cursor-blink::after {
   content: '|';
   animation: blink 1s step-end infinite;
-  color: #d4af37;
+  color: #991B1B;
 }
 
 /* ============================
-   FLOAT ANIMATION
+   3D CARD UTILITIES (CSS 3D)
    ============================ */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
+.preserve-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
-.float-anim {
-  animation: float 5s ease-in-out infinite;
-}
-
-/* ============================
-   GLOW PULSE for highlight cards
-   ============================ */
-@keyframes glowPulse {
-  0%, 100% { box-shadow: 0 0 10px rgba(212, 175, 55, 0.1); }
-  50% { box-shadow: 0 0 25px rgba(212, 175, 55, 0.25), 0 0 50px rgba(212, 175, 55, 0.1); }
-}
-
-.glow-gold {
-  animation: glowPulse 3s ease-in-out infinite;
+.backface-hidden {
+  backface-visibility: hidden;
 }
 
 /* ============================
@@ -150,43 +99,39 @@ html {
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
+  background: transparent;
 }
 
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: #d4af37;
+  background: #FDFBF7;
   cursor: pointer;
-  border: 2px solid #040714;
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-  transition: box-shadow 0.2s;
+  border: 3px solid #1E3A8A;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  box-shadow: 0 0 16px rgba(212, 175, 55, 0.8);
+  transform: scale(1.15);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }
 
 input[type="range"]::-moz-range-thumb {
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  background: #d4af37;
+  background: #FDFBF7;
   cursor: pointer;
-  border: 2px solid #040714;
-  box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+  border: 3px solid #1E3A8A;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
 }
 
-/* ============================
-   CARD HOVER LIFT
-   ============================ */
-.card-hover {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
 }

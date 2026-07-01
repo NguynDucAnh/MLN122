@@ -1,97 +1,68 @@
 import { motion } from 'motion/react';
+import { Sparkles } from 'lucide-react';
 
 export function Footer() {
   return (
-    <footer className="bg-[#040714] py-32 px-4 text-center relative overflow-hidden min-h-screen flex flex-col justify-center items-center">
+    <footer className="relative py-24 px-4 bg-transparent overflow-hidden flex flex-col items-center justify-center border-t border-[#B45309]/20 backdrop-blur-sm">
       
-      {/* Retracting tentacle / dust animation */}
-      <div className="absolute inset-0 pointer-events-none flex justify-center items-center opacity-40">
-        <motion.div
-          animate={{ 
-            scale: [1, 0.2, 0.5, 0], 
-            opacity: [0.6, 0.2, 0.4, 0] 
-          }}
-          transition={{ duration: 12, ease: "easeInOut", repeat: Infinity, repeatDelay: 2 }}
-          className="w-[400px] h-[400px] bg-[radial-gradient(circle,rgba(212,175,55,0.3)_0%,transparent_70%)] rounded-full blur-[40px]"
-        />
-        {/* Particles retracting */}
-        <div className="absolute inset-0 overflow-hidden flex justify-center items-center">
-             {[...Array(15)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="absolute w-1 h-1 bg-[#d4af37] rounded-full"
-                  initial={{ 
-                    x: (Math.random() - 0.5) * 800, 
-                    y: (Math.random() - 0.5) * 800,
-                    opacity: 0.5
-                  }}
-                  animate={{ 
-                    x: 0, 
-                    y: 0,
-                    opacity: 0,
-                    scale: 0
-                  }}
-                  transition={{ 
-                    duration: 4 + Math.random() * 4, 
-                    repeat: Infinity,
-                    delay: Math.random() * 4,
-                    ease: "easeIn"
-                  }}
-                />
-             ))}
-        </div>
-      </div>
+      {/* Background soft glow base */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-30 bg-[radial-gradient(ellipse_at_center,rgba(254,252,232,0.8)_0%,transparent_100%)]" />
 
-      <div className="max-w-4xl mx-auto flex flex-col items-center relative z-10 space-y-16">
+      {/* Decorative top border glow */}
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#B45309]/50 to-transparent" />
+
+      <div className="max-w-4xl mx-auto relative z-10 text-center">
         
-        {/* Section Label */}
-        <motion.span 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+        {/* Animated Icon */}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          className="text-[#d4af37] font-mono text-xs uppercase tracking-[0.3em] font-semibold block"
+          transition={{ duration: 0.8 }}
+          className="flex justify-center mb-8"
         >
-          KẾT LUẬN CHUNG
-        </motion.span>
+          <div className="p-4 bg-orange-100/50 backdrop-blur-md border border-orange-200/60 text-[#B45309] rounded-full shadow-[0_0_30px_rgba(180,83,9,0.15)]">
+            <Sparkles size={32} className="animate-pulse" />
+          </div>
+        </motion.div>
 
-        {/* Core Message Block */}
-        <motion.blockquote 
-          initial={{ opacity: 0, y: 30 }}
+        {/* Conclusion Text */}
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 1 }}
-          className="text-xl md:text-2xl lg:text-3xl font-display font-light text-slate-200 leading-relaxed italic border-l-2 border-[#d4af37] pl-6 md:pl-10 py-4 text-left shadow-2xl bg-[#0d122b]/30 backdrop-blur-sm rounded-r-2xl"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-2xl md:text-4xl font-display font-bold text-slate-900 mb-6 leading-tight drop-shadow-sm"
         >
-          "Dù độc quyền tư nhân hay độc quyền nhà nước có thiên biến vạn hóa để tự cứu lấy mình, mọi sự điều chỉnh này chủ yếu vẫn nhằm bảo vệ sự tồn tại của hệ thống tư bản. Với những mâu thuẫn cốt lõi không thể tự khắc phục (tính xã hội hóa cao của lực lượng sản xuất &gt;&lt; chế độ chiếm hữu tư nhân), chủ nghĩa tư bản mang trong mình giới hạn lịch sử tất yếu và không thể tồn tại vĩnh viễn."
-        </motion.blockquote>
+          KẾT LUẬN
+        </motion.h2>
 
-        {/* Final Open Question */}
-        <motion.div 
+        <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1.5, delay: 0.8 }}
-          className="text-[#ff5e3a] text-sm md:text-base font-mono tracking-widest uppercase font-semibold"
+          transition={{ duration: 1, delay: 0.5 }}
+          className="text-slate-700 text-base md:text-lg leading-relaxed font-medium max-w-2xl mx-auto mb-16"
         >
-          Vậy đến khi nào sinh vật này hết khả năng biến hình?
-        </motion.div>
+          Chủ nghĩa tư bản độc quyền, dù có sức mạnh điều tiết và thích nghi to lớn đến đâu, vẫn không thể vượt qua được giới hạn lịch sử của chính mình. Những mâu thuẫn nội tại vẫn tiếp tục tích tụ, tạo tiền đề vật chất khách quan cho một phương thức sản xuất mới, ưu việt hơn trong tương lai.
+        </motion.p>
 
-        {/* Divider */}
-        <div className="w-24 h-px bg-gradient-to-r from-transparent via-[#1e295d] to-transparent my-12" />
-
-        {/* Team/Student Info Placeholder */}
-        <motion.div 
+        {/* Sign off */}
+        <motion.div
           initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.6 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, delay: 1.2 }}
-          className="text-slate-400 text-xs font-mono tracking-wider space-y-3 text-center"
+          transition={{ duration: 1, delay: 0.8 }}
+          className="border-t border-slate-300/50 pt-8 mt-8 flex flex-col items-center gap-3"
         >
-          <p>Môn học: Kinh tế Chính trị Mác - Lênin</p>
-          <p>GVHD: [Điền Tên Giảng Viên]</p>
-          <p>Thực hiện bởi: Nhóm [Số Nhóm] - Lớp [Tên Lớp]</p>
-          <p className="mt-12 text-[10px] opacity-40">© 2026. Thiết kế lấy cảm hứng từ cấu trúc biến dạng biện chứng.</p>
+          <span className="text-[11px] font-mono tracking-widest text-[#B45309] uppercase font-bold">
+            Bài thuyết trình môn Triết học Mác - Lênin
+          </span>
+          <span className="text-[10px] font-mono tracking-[0.2em] text-slate-500 uppercase">
+            Designed for Impact & Clarity
+          </span>
         </motion.div>
+
       </div>
     </footer>
   );
